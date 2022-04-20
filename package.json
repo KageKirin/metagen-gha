@@ -1,0 +1,29 @@
+{
+  "name": "metagen-gha",
+  "version": "0.0.1",
+  "description": "Port of Unity `.meta` file generator `metagen` to JavaScript as GitHub Action.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "npx @vercel/ncc build && npx convert-action"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KageKirin/metagen-gha.git"
+  },
+  "keywords": ["unity", "meta"],
+  "author": "Chris Helmich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KageKirin/metagen-gha/issues"
+  },
+  "homepage": "https://github.com/KageKirin/metagen-gha#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "glob": "^7.2.0",
+    "xxhash-addon": "^1.4.0"
+  }
+}
