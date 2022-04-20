@@ -1,0 +1,45 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          npm install
+          yes | npm run build
+
+      - name: Test 1 -- seed and single input
+        uses: ./ # Uses an action in the root directory
+        with:
+          seed: aaa.bbb.ccc
+          files: README.md
+      - name: Print test 1
+        run: cat README.md.meta
+
+      - name: Test 2 -- no seed, single input
+        uses: ./ # Uses an action in the root directory
+        with:
+          files: README.md
+      - name: Print test 2
+        run: cat README.md.meta
+
+      - name: Test 3 -- no seed, no input (use package.json.files for input)
+        uses: ./ # Uses an action in the root directory
+      - name: Print test 3
+        run: cat README.md.meta
+
+      - name: Test 4 -- seed, file globbing
+        uses: ./ # Uses an action in the root directory
+        with:
+          seed: eee.fff.ggg
+          files: |
+            "*"
+      - name: Print test 4
+        run: cat README.md.meta
